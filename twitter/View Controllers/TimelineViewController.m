@@ -15,6 +15,8 @@
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "DateTools.h"
+#import "NSDate+DateTools.h"
 
 
 @interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate>
@@ -90,10 +92,13 @@
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     
+    NSDate *timeAgoDate = [NSDate dateWithTimeIntervalSinceNow:-4];
+
     cell.tweet = tweet;
+    NSDate *timeAgoData = [NSDate dateWithTimeInterval:-4 sinceDate:tweet.date];
     cell.handleLabel.text =  [@"@" stringByAppendingString:tweet.user.screenName];
     cell.usernameLabel.text = tweet.user.name;
-    cell.dateLabel.text = tweet.createdAtString;
+    cell.dateLabel.text = ((void)(@"Time Ago: %@"), timeAgoData.shortTimeAgoSinceNow);
     cell.tweetTextLabel.text = tweet.text;
     cell.retweetNumberLabel.text = [NSString stringWithFormat:@"%d",tweet.retweetCount];
     cell.likeNumberImageView.text = [NSString stringWithFormat:@"%d",tweet.favoriteCount];
