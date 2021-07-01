@@ -41,8 +41,12 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         // Configure the input format to parse the date string
         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+        NSDateFormatter *format2 = [[NSDateFormatter alloc] init];
+        //Configure input format to parse the date String
+        format2.dateFormat = @"HH:mm";
         // Convert String to Date
         NSDate *date = [formatter dateFromString:createdAtOriginalString];
+        self.timeH = [format2 stringFromDate: createdAtOriginalString];
         self.date = date;
         // Configure output format
         formatter.dateStyle = NSDateFormatterShortStyle;
@@ -50,6 +54,9 @@
         // Convert Date to String
         self.createdAtString = [formatter stringFromDate:date];
         
+        NSDateFormatter *format3 = [[NSDateFormatter alloc] init];
+        format3.dateFormat = @"MM-dd-yyyy";
+        self.dayD = [format3 stringFromDate: createdAtOriginalString];
     
     }
     return self;

@@ -17,6 +17,7 @@
 #import "ComposeViewController.h"
 #import "DateTools.h"
 #import "NSDate+DateTools.h"
+#import "DetailsViewController.h"
 
 
 @interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate>
@@ -43,6 +44,18 @@
     [self loadTweets];
     
     // Get timeline
+}
+
+- (void)viewDidAppear:(BOOL)animated    {
+    NSLog(@"In view did appear");
+    [self loadTweets];
+    [self.tableView reloadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated    {
+    NSLog(@"In view will appear");
+    [self loadTweets];
+    [self.tableView reloadData];
 }
 
 -(void) loadTweets  {
@@ -74,9 +87,18 @@
 #pragma mark - Navigation
 //In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
+    if([[segue identifier] isEqualToString:@"detailViewSegue"]){
+        TweetCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Tweet *tweet = self.arrayOfTweets[indexPath.row];
+        
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.tweet = tweet;
+    }else{
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
+    }
 }
 
 
@@ -91,8 +113,6 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
-    
-    NSDate *timeAgoDate = [NSDate dateWithTimeIntervalSinceNow:-4];
 
     cell.tweet = tweet;
     NSDate *timeAgoData = [NSDate dateWithTimeInterval:-4 sinceDate:tweet.date];
@@ -104,9 +124,13 @@
     cell.likeNumberImageView.text = [NSString stringWithFormat:@"%d",tweet.favoriteCount];
     if (cell.tweet.favorited == YES)    {
         cell.likeButton.imageView.image = [UIImage imageNamed:@"favor-icon-red.png"];
+    }   else {
+        cell.likeButton.imageView.image = [UIImage imageNamed:@"favor-icon.png"];
     }
     if (cell.tweet.retweeted == YES)    {
         cell.retweetButton.imageView.image = [UIImage imageNamed:@"retweeet-icon-green.png"];
+    }   else{
+        cell.retweetButton.imageView.image = [UIImage imageNamed:@"retweeet-icon.png"];
     }
     
     NSString *URLString = tweet.user.profilePicture;
