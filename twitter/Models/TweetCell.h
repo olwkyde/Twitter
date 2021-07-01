@@ -18,11 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *handleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tweetTextLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *replyImageView;
-@property (weak, nonatomic) IBOutlet UILabel *repliesNumberLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *retweetImageView;
+@property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UILabel *retweetNumberLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *likeImageView;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UILabel *likeNumberImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *messageImageView;
 @property (nonatomic, strong) Tweet *tweet;

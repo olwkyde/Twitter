@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 // For Retweets
 @property (nonatomic, strong) User *retweetedByUser;  // user who retweeted if tweet is retweet
+
+@property (nonatomic) int reply_count; //number of times Tweet has been replied to
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 + (NSMutableArray *)tweetsWithArray:(NSArray *)dictionaries;
 @end

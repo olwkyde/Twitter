@@ -33,6 +33,7 @@
         
         NSDictionary *user = dictionary[@"user"];
         self.user = [[User alloc] initWithDictionary:user];
+        self.reply_count = [dictionary[@"reply_count"] intValue];
 
         // TODO: Format and set createdAtString
         // Format createdAt date string

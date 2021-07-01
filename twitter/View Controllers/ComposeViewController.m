@@ -18,6 +18,7 @@
 @implementation ComposeViewController
 
 - (void)viewDidLoad {
+    self.tweetTextView.layer.borderColor = [UIColor blackColor].CGColor;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }

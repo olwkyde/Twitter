@@ -90,13 +90,19 @@
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     
-    cell.handleLabel.text = tweet.user.screenName;
+    cell.tweet = tweet;
+    cell.handleLabel.text =  [@"@" stringByAppendingString:tweet.user.screenName];
     cell.usernameLabel.text = tweet.user.name;
     cell.dateLabel.text = tweet.createdAtString;
     cell.tweetTextLabel.text = tweet.text;
-    cell.repliesNumberLabel.text = [NSString stringWithFormat:@"%d",tweet.retweetCount];
     cell.retweetNumberLabel.text = [NSString stringWithFormat:@"%d",tweet.retweetCount];
     cell.likeNumberImageView.text = [NSString stringWithFormat:@"%d",tweet.favoriteCount];
+    if (cell.tweet.favorited == YES)    {
+        cell.likeButton.imageView.image = [UIImage imageNamed:@"favor-icon-red.png"];
+    }
+    if (cell.tweet.retweeted == YES)    {
+        cell.retweetButton.imageView.image = [UIImage imageNamed:@"retweeet-icon-green.png"];
+    }
     
     NSString *URLString = tweet.user.profilePicture;
     NSURL *url = [NSURL URLWithString:URLString];
@@ -114,7 +120,7 @@
 
 
 - (void)didTweet:(Tweet *)tweet {
-    [self.arrayOfTweets addObject: tweet];
+    [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
 }
 
