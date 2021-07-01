@@ -25,7 +25,8 @@
     
    
     //check whether the tweet was already liked
-    if ((self.likeButton.imageView.image == [UIImage imageNamed:@"favor-icon.png"]))   {
+//    if ((self.likeButton.imageView.image == [UIImage imageNamed:@"favor-icon.png"]))   {
+    if (self.tweet.favorited == NO)   {
         //update the local tweet model
         self.tweet.favorited = YES;
         self.tweet.favoriteCount += 1;
@@ -59,7 +60,7 @@
 }
 - (IBAction)didTapRetweet:(id)sender {
     
-    if ((self.retweetButton.imageView.image == [UIImage imageNamed:@"retweet-icon.png"]))   {
+    if (self.tweet.retweeted == NO)   {
         self.tweet.retweeted = YES;
         self.tweet.retweetCount += 1;
         [self refreshDataRetweet];
