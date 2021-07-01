@@ -38,7 +38,6 @@
     if (self.tweet.retweeted == YES)    {
         self.retweetButton.imageView.image = [UIImage imageNamed:@"retweeet-icon-green.png"];
     }
-    
 }
 
 
