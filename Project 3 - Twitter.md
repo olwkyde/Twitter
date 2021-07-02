@@ -64,6 +64,7 @@ https://i.imgur.com/nNMs92d.gif
 <img src='https://i.imgur.com/rNpOPyu.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 <img src='https://i.imgur.com/OTl3QBa.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 https://i.imgur.com/OTl3QBa.gif
+<img src='https://i.imgur.com/kzzYaQs.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
 GIF created with [Kap](https://getkap.co/).
