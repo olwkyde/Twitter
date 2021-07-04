@@ -2,7 +2,7 @@
 
 **Name of your app** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **X** hours spent in total
+Time spent: **24** hours spent in total
 
 ## User Stories
 
